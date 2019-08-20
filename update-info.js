@@ -35,7 +35,7 @@ async function setup() {
       const name = answers.name.toLowerCase()
       const baseGitUrl = `https://github.com/${gitUsername}/${name}`
 
-      pkg.author = `${gitName} <${gitEmail}>`
+      pkg.author = `${gitName.trim()} <${gitEmail}>`
       pkg.name = name
       pkg.browser = `dist/${name}.min.js`
       pkg.description = answers.description
