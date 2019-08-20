@@ -8,6 +8,7 @@ const inquirer = require('inquirer')
 
 async function setup() {
   const { stdout } = await exec('git config --global --get user.email')
+  const { stdout: gitName } = await exec('git config --global --get user.name')
 
   const gitEmail = stdout.trim()
   const gitUsername = gitEmail.split('@')[0]
@@ -34,7 +35,7 @@ async function setup() {
       const name = answers.name.toLowerCase()
       const baseGitUrl = `https://github.com/${gitUsername}/${name}`
 
-      pkg.author = gitEmail
+      pkg.author = `${gitName} <${gitEmail}>`
       pkg.name = name
       pkg.browser = `dist/${name}.min.js`
       pkg.description = answers.description
